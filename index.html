@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bakers Percentage</title>
+  </head>
+  <body>
+
+  <script type="text/x-handlebars" data-template-name="application">
+    <h1>Bakers Percentage Calculator</h1>
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    <ul>
+      <li>Flour {{view Ember.TextField valueBinding="flour"}}g</li>
+      <li>Salt {{salt}}g</li>
+      <li>Yeast {{yeast}}g</li>
+      <li>Liquid {{liquid}}ml</li>
+      <li>Fat {{fat}}g</li>
+    </ul>
+  </script>
+
+  <script src="components/jquery/jquery.min.js"></script>
+  <script src="components/handlebars/handlebars.js"></script>
+  <script src="components/ember/ember.min.js"></script>
+  <script>
+    window.App = Ember.Application.create();
+
+    App.IndexController = Ember.Controller.extend({
+
+      flour: 1000,
+
+      salt: function() {
+        return this.get('flour') * 0.02;
+      }.property('flour'),
+
+      yeast: function() {
+        return this.get('flour') * 0.01;
+      }.property('flour'),
+
+      liquid: function() {
+        return this.get('flour') * 0.6;
+      }.property('flour'),
+
+      fat: function() {
+        return this.get('flour') * 0.02;
+      }.property('flour')
+
+    });
+  </script>
+
+  </body>
+</html>
